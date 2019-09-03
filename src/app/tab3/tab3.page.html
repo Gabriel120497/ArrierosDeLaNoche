@@ -1,9 +1,63 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Mi Perfil
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content *ngFor="let user of usuario">
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h4>Nombre</h4>
+        <h1>{{user.nombre}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <h4>Tipo Documento</h4>
+        <h1>{{user.tipoDoc}}</h1>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>
+          <h4>Documento</h4>
+          <h1>{{user.documento}}</h1>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>
+            <h4>RH</h4>
+            <h1>{{user.rh}}</h1>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>
+              <h4>Número de Celular</h4>
+              <h1>{{user.celular}}</h1>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>
+                <h4>Contacto de Emergencia</h4>
+                <h1>{{user.contacto}}</h1>
+                <h1>{{user.numeroContacto}}</h1>
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>
+                  <h4>Distancia Recorrida</h4>
+                  <h1>{{user.distanciaRecorrida}} KM</h1>
+                </ion-label>
+              </ion-item>
+
+  </ion-list>
+
+</ion-content>
