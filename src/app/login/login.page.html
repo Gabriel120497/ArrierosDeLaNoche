@@ -1,0 +1,38 @@
+<ion-content class='login-content' padding>
+  <ion-row class='logo-row'>
+    <ion-col class='initial'>
+      <img class='imagen' src='./assets/img/logo.jpg' />
+    </ion-col>
+  </ion-row>
+  <ion-grid>
+    <form (ngSubmit)='login()' #registerForm='ngForm'>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md='6' size-lg='5' size-xs='12'>
+          <div text-center>
+            <h4>Iniciar sesión</h4>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input id='user' name='user' type='text' placeholder='Usuario' [(ngModel)]='registerCredentials.user'
+                required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input id='pass' name='pass' type='password' placeholder='Contraseña'
+                [(ngModel)]='registerCredentials.pass' required></ion-input>
+            </ion-item>
+          </div>
+          <div *ngIf='errorAuth' class='errorAuth'>
+            <small class='errorAuth'>El usuario o contraseña son incorrectos</small>
+          </div>
+          <div padding>
+            <ion-button size="medium" expand="block" type="submit" [disabled]="!registerForm.form.valid"><b>Iniciar sesión</b>
+            </ion-button>
+            <div class='initial' >
+              <small class='options' (click)='forgetPassword()'>¿Olvidó su contraseña?</small>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
