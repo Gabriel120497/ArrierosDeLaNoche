@@ -15,9 +15,6 @@ export class LoginPage implements OnInit {
 
   registerCredentials = { user: '', pass: '' };
   errorAuth = false;
-  perfil:String //Variable que se llena con lo que responda el servicio y que dice que tipo de usuario ingresa
-  user:String //Variable que se llena con lo que responda el servicio y que dice el usuario
-  pass:String //Variable que se llena con lo que responda el servicio y que dice el pass del usuario
   constructor(
     private router: Router,
     private consults: ConsultsService,
@@ -27,19 +24,27 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login(){
+  login() {
     this.cargando.mostrarCargando('Iniciando sesión', 8000);
     const passHash = sha256(this.registerCredentials.pass).toString();
     const body = { user: this.registerCredentials.user, password: passHash };
 
-    /*this.consults.login(body).subscribe(
+    this.consults.login(body).subscribe(
       (response: any) => {
         this.errorAuth = false;
         this.service.setToken(response.access_token);
-        this.service.setId(response.id);
-        this.service.setIdPerfil(response.idPerfil);
-        this.service.setHabilitado(response.habilitado);
-        this.router.navigate(['tabs/tab2']);
+        this.service.setId(response.userId);
+        this.service.setIdPerfil(response.perfilId);
+        console.log(typeof response.perfilId);
+        console.log(typeof this.service.getIdPerfil());
+
+        if (this.service.getIdPerfil() === 1) {
+          this.router.navigate(['admin/admin-tab2']);
+        } else if(this.service.getIdPerfil() === 2){
+          //Crear el componente de Arriero
+        }else{
+          this.router.navigate(['tabs/tab2']);
+        }
       },
       (error: any) => {
         if (error.status == 401) {
@@ -48,18 +53,7 @@ export class LoginPage implements OnInit {
 
         }
       }
-    );*/
-  
-   /* if (this.service.getIdPerfil === 1) {
-      //Cambiar por el componente de Admin
-      this.router.navigate(['admin/admin-tab2']);
-    } else if((this.registerCredentials.user && this.registerCredentials.pass) && this.perfil === 'Arriero'){
-      //Cambiar por el Componente de Arriero
-      this.router.navigate(['tabs/tab2']);
-    }else{
-      this.router.navigate(['tabs/tab2']);
-    }*/
-    
+    );
   }
 
 }

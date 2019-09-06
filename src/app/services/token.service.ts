@@ -8,16 +8,16 @@ import { Promise } from 'q';
 })
 export class TokenService {
 
-  /*private token: string;
+  private token: string;
   private user: string;
   private id: string;
-  private idPerfil: string;
+  private idPerfil: number;
   private habilitado: boolean;
   constructor(private router: Router) {
     this.token = '';
     this.user = '';
     this.id = '';
-    this.idPerfil = '';
+    this.idPerfil = 0;
     this.habilitado = false;
   }
 
@@ -39,9 +39,6 @@ export class TokenService {
   setId = (id: string) => this.id = id;
   getId = () => this.id;
 
-  setIdPerfil = (idP: string) => this.idPerfil = idP;
+  setIdPerfil = (idP: number) => this.idPerfil = idP;
   getIdPerfil = () => this.idPerfil;
-
-  setHabilitado = (h: boolean) => this.habilitado = h;
-  getHabilitado = () => this.habilitado;*/
 }

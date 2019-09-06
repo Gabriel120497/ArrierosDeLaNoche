@@ -48,12 +48,10 @@ export class Tab2Page implements OnInit {
         valor: '$89900'
       }]
     }
-  ];
-    //setTimeout(() => {
-    //this.cargando.detenerCargando();
-    //}, 1000);
+    ];
+    this.cargando.detenerCargando();
     console.log(this.eventos);
-    
+
   }
 
 }
