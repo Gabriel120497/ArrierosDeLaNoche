@@ -18,4 +18,21 @@ export class ConsultsService {
     );
     return this.http.post(`${this.address}/login`, body, { headers });
   }
+
+  getAllEvents2(): Observable<any> {
+    console.log('getEvents');
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.get(`${this.address}/getAllEvents`, { headers });
+  }
+
+  getAllEvents(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.get(`${this.address}/getAllEvents`, { headers });
+  }
 }

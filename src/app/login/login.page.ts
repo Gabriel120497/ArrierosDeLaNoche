@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
         if (this.service.getIdPerfil() === 1) {
           this.router.navigate(['admin/admin-tab2']);
         } else if(this.service.getIdPerfil() === 2){
-          //Crear el componente de Arriero
+          this.router.navigate(['arriero/arriero-tab2']);
         }else{
           this.router.navigate(['tabs/tab2']);
         }

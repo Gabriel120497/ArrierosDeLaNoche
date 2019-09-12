@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ConsultsService } from 'src/app/services/consults.service';
 
 @Component({
   selector: 'app-admin-tab2',
@@ -8,11 +9,21 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class AdminTab2Page implements OnInit {
 
-  constructor(private cargando: LoadingService) { 
+  eventos = [];
+
+  constructor(private cargando: LoadingService, private consults: ConsultsService) { 
   }
 
   ngOnInit() {
-    this.cargando.detenerCargando();
+    console.log('onInit');
+    this.consults.getAllEvents2().subscribe((response: any) => {
+      console.log(response.res);
+      
+      this.eventos = response.res;
+      this.cargando.detenerCargando();
+    },
+    (error: any) => {
+    });
   }
 
 }

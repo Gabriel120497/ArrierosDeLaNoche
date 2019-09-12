@@ -6,21 +6,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="secondary">
+<ion-content>
   <ion-card class="card" *ngFor="let evento of eventos; let i = index">
-      <img class="imgRecorrido" [src]="evento.recorrido[0].imagen" />
-      <ion-card-header>
-        <ion-card-title>{{evento.titulo}}</ion-card-title>
-        <ion-row>
-            valor: {{evento.recorrido[0].valor}}
-            <br>
-            Difiultad: {{evento.recorrido[0].dificultad}}
-            <br>
-            Distancia: {{evento.recorrido[0].km}} km
-          </ion-row>
-      </ion-card-header>
-      <ion-card-content>
-        {{evento.descripcion}}
-      </ion-card-content>
-    </ion-card>
+    <img class="imgRecorrido" [src]="evento.recorrido.imagen" />
+    <ion-card-header>
+      <ion-card-title>{{evento.tituloEvento}}</ion-card-title>
+      <ion-row>
+        <!--valor: {{evento.recorrido.valor}}-->
+        <br>
+        Difiultad: {{evento.recorrido.dificultad}}
+        <br>
+        Distancia: {{evento.recorrido.distancia}} km
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      {{evento.recorrido.descripcion}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

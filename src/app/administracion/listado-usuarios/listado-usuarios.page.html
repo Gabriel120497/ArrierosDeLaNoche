@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid class="toolbar">
+      <ion-row>
+        <ion-col class="toolbar" size="2">
+          <ion-back-button></ion-back-button>
+        </ion-col>
+        <ion-col class="toolbar title">
+          <ion-title class="toolbar">Listado Usuarios</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Agregar boton de guarda y que este deshabilitado, cuando cambien un estado se habilite-->
+  <ion-list>
+    <ion-item *ngFor="let usuario of usuarios; let i = index">
+      <ion-label>{{usuario.nombre}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="usuario.isChecked" (ionChange)="validarPago(i)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button class="btnSave" expand="block" [disabled]="!modificado" (click) = "guardar()">Guardar</ion-button>
+</ion-content>
