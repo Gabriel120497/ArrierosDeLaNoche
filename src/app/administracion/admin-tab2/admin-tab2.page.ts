@@ -16,7 +16,7 @@ export class AdminTab2Page implements OnInit {
 
   ngOnInit() {
     console.log('onInit');
-    this.consults.getAllEvents2().subscribe((response: any) => {
+    this.consults.getAllEvents().subscribe((response: any) => {
       console.log(response.res);
       
       this.eventos = response.res;

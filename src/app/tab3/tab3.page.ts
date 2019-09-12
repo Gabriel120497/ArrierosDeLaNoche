@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsultsService } from '../services/consults.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-tab3',
@@ -9,29 +11,24 @@ export class Tab3Page implements OnInit {
 
   usuario = [];
 
-  constructor() {
-
-    this.usuario = [{
-      nombre: 'Sutanito',
-      tipoDoc: 'CC',
-      documento: '1037655531',
-      rh: 'A+',
-      celular: '3013667627',
-      contacto: 'Fulanito',
-      numeroContacto: '3126983426',
-      distanciaRecorrida: '150'
-    }
-  ]
-
-  }
+  constructor(private consults: ConsultsService, private service: TokenService,) {}
 
   ngOnInit() {
-   
-    //setTimeout(() => {
-    //this.cargando.detenerCargando();
-    //}, 1000);
-    console.log(this.usuario);
+    let idPerfil = this.service.getIdPerfil();
+    console.log('idPerfil', idPerfil);
     
+    //const body = {'id_usuario':idPerfil};
+
+    const body = {'id_usuario':3};
+
+    this.consults.getUserInfo(body).subscribe(
+      (response: any) => {
+        this.usuario = response.res;
+        console.log(this.usuario);
+      },
+      (error: any) => {
+      }
+    );
   }
 
 }

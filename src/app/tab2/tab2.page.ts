@@ -14,7 +14,7 @@ export class Tab2Page implements OnInit {
   constructor(private cargando: LoadingService, private consults: ConsultsService) { }
 
   ngOnInit() {
-    this.consults.getAllEvents2().subscribe((response: any) => {
+    this.consults.getAllEvents().subscribe((response: any) => {
       console.log(response.res);
       
       this.eventos = response.res;
