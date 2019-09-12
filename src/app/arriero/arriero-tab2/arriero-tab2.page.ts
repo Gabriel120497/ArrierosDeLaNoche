@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ConsultsService } from 'src/app/services/consults.service';
 
 @Component({
   selector: 'app-arriero-tab2',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArrieroTab2Page implements OnInit {
 
-  constructor() { }
+  eventos = [];
+
+  constructor(private cargando: LoadingService, private consults: ConsultsService) { 
+  }
 
   ngOnInit() {
+    console.log('onInit');
+    this.consults.getAllEvents().subscribe((response: any) => {
+      console.log(response.res);
+      
+      this.eventos = response.res;
+      this.cargando.detenerCargando();
+    },
+    (error: any) => {
+    });
   }
 
 }
