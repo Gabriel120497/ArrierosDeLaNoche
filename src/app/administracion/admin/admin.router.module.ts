@@ -38,6 +38,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'admin-tab4',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../admin-tab4/admin-tab4.module').then(m => m.AdminTab4PageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/administracion/admin/admin-tab2',
         pathMatch: 'full'

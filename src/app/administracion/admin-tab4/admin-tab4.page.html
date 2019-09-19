@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Usuarios
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card" *ngFor="let usuario of usuarios; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{usuario.nombre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        {{usuario.tipoDoc}} {{usuario.documento}}
+      </ion-row>
+      <ion-row>
+        {{usuario.celular}}
+      </ion-row>
+      <ion-row>
+        {{usuario.tipoUsuario}}
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

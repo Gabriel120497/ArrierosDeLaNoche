@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ConsultsService } from 'src/app/services/consults.service';
 
 @Component({
   selector: 'app-listado-usuarios',
@@ -9,44 +11,45 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ListadoUsuariosPage implements OnInit {
 
   usuarios = [];
-  modificado:boolean;
+  habilitar = false;
+  body;
 
-  constructor(private route: ActivatedRoute) { }
-
-  ionViewWillEnter(){
-    this.modificado = false;
-    this.ngOnInit();
-  }
+  constructor(private route: ActivatedRoute, 
+    private cargando: LoadingService, 
+    private consults: ConsultsService) { }
 
   ngOnInit() {
      //Crear servicio que me traiga todos los usuarios 
     //registrados con sus estados que asisten a determinada caminata
-    this.modificado = false;
-    this.usuarios = [{
-      nombre: 'Peranito Perez',
-      estado: 'Registrado',
-      isChecked: false
-    },
-    {
-      nombre: 'Sutanita Salazar',
-      estado: 'Pago',
-      isChecked: true
-    }];
+    this.cargando.mostrarCargando('Cargando', 8000);
+
     this.route.queryParams.subscribe(params => {
-      console.log(params['idEvento']);
+      console.log('params: ', parseInt(params['idEvento']));
+      this.body  = {'id_event': parseInt(params['idEvento'])};
     });
+    console.log(this.body);
+    this.consults.getAllUsersInEvent(this.body).subscribe(
+      (response: any) => {
+        this.usuarios = response.res;
+        console.log('usuarios: ', this.usuarios);
+        this.cargando.detenerCargando();
+      },
+      (error: any) => {
+      }
+    );
+  }
+
+  habilitarCheck(){
+    this.habilitar = true;
   }
 
   validarPago(i){
     this.usuarios[i]['validado'] = true;
-    this.modificado = true;
     console.log(this.usuarios);
-    console.log(this.modificado);
   }
 
   guardar(){
     let usuariosNuevo = []
-    this.modificado = false;
     this.usuarios.forEach(user => {
       if (user['validado'] === true) {
         console.log('usuario', user);
@@ -54,8 +57,7 @@ export class ListadoUsuariosPage implements OnInit {
       }
     });
     console.log(usuariosNuevo);
-    console.log(this.modificado);
-    
+    this.habilitar = false;
     //Mandar por el servicio
   }
 

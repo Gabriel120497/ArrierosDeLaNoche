@@ -35,4 +35,20 @@ export class ConsultsService {
     return this.http.post(`${this.address}/getUserInfo`, body, { headers });
   }
 
+  getAllUsers(body): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.post(`${this.address}/getAllUsers`, body, { headers });
+  }
+
+  getAllUsersInEvent(body): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.post(`${this.address}/getAllUsersInEvent`, body, { headers });
+  }
+
 }

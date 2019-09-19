@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '*', redirectTo: ''},
   { path: 'admin', loadChildren: './administracion/admin/admin.module#AdminPageModule'},
   { path: 'arriero', loadChildren: './arriero/arriero/arriero.module#ArrieroPageModule' },
-  { path: 'listado-usuarios', loadChildren: './administracion/listado-usuarios/listado-usuarios.module#ListadoUsuariosPageModule' },
+  { path: 'listado-usuarios', loadChildren: './administracion/listado-usuarios/listado-usuarios.module#ListadoUsuariosPageModule' }
 ];
 @NgModule({
   imports: [
