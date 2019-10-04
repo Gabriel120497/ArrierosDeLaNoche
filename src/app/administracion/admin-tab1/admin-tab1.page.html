@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color = 'primary'>
       <ion-title>
         Asistentes
       </ion-title>
@@ -7,16 +7,16 @@
   </ion-header>
   
   <ion-content>
-    <ion-card class="card" *ngFor="let evento of eventos" (click)="verAsistentes(evento.id)">
+    <ion-card class="card" *ngFor="let evento of eventos" (click)="verAsistentes(evento.idEvento)">
         <ion-card-header>
-          <ion-card-title>{{evento.titulo}}</ion-card-title>
+          <ion-card-title>{{evento.tituloEvento}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <h3>
-              Fecha de Inicio: {{evento.fechaIniRecorrido}}
+              Fecha de Inicio: {{evento.fechaInicioReco}}
           </h3>
           <h3>
-              Fecha Finalización: {{evento.fechaFinRecorrido}}
+              Fecha Finalización: {{evento.fechaFinReco}}
           </h3>
         </ion-card-content>
       </ion-card>

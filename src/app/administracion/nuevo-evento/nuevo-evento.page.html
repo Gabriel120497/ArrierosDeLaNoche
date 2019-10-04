@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar color = 'primary'>
+    <ion-grid class="toolbar">
+      <ion-row>
+        <ion-col class="toolbar" size="2">
+          <ion-back-button></ion-back-button>
+        </ion-col>
+        <ion-col class="toolbar title">
+          <ion-title class="toolbar">Nuevo Evento</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)='guardarEvento()'>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Titulo Evento <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" [(ngModel)]='evento.titulo' name="titulo"></ion-input>
+      </ion-item>
+
+      <ion-item class="itemImagen">
+        <ion-label class="label" position="stacked">Imagen <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-img class="img" [src]="base64Image"></ion-img>
+        <ion-button class="boton" (click)="selectImage()">
+          <i class="fas fa-upload"></i>
+        </ion-button>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Lugar <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" [(ngModel)]='evento.lugar' name="lugar"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Distancia <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" [(ngModel)]='evento.distancia' name="distancia"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Dificultad <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" [(ngModel)]='evento.dificultad' name="dificultad"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Descripcion</ion-label>
+        <ion-textarea [(ngModel)]='evento.descripcion' name="descripcion"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Fechas <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-label position="stacked">Fecha Inicio</ion-label>
+        <ion-datetime [(ngModel)]='evento.inicio' name="inicio" displayFormat="MM/DD/YYYY" value="{{evento.inicio}}"
+          min="{{evento.inicio}}">
+        </ion-datetime>
+        <ion-label position="stacked">Fecha Fin</ion-label>
+        <ion-datetime [(ngModel)]='evento.inicio' name="inicio" displayFormat="MM/DD/YYYY" value="{{evento.inicio}}"
+          min="{{evento.inicio}}">
+        </ion-datetime>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Create account</ion-button>
+    </div>
+  </form>
+</ion-content>

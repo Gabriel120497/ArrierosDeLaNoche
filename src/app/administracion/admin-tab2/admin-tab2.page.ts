@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ConsultsService } from 'src/app/services/consults.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-tab2',
@@ -11,7 +12,7 @@ export class AdminTab2Page implements OnInit {
 
   eventos = [];
 
-  constructor(private cargando: LoadingService, private consults: ConsultsService) { 
+  constructor(private cargando: LoadingService, private consults: ConsultsService, private router: Router) { 
   }
 
   ngOnInit() {
@@ -26,4 +27,7 @@ export class AdminTab2Page implements OnInit {
     });
   }
 
+  addNew() {
+    this.router.navigate(['nuevo-evento'])
+  }
 }

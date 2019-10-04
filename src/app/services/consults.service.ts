@@ -51,4 +51,12 @@ export class ConsultsService {
     return this.http.post(`${this.address}/getAllUsersInEvent`, body, { headers });
   }
 
+  createNewEvent(body):Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.post(`${this.address}/createNewEvent`, body, { headers });
+  }
+
 }

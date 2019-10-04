@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
 
   registerCredentials = { user: '', pass: '' };
   errorAuth = false;
+  
   constructor(
     private router: Router,
     private consults: ConsultsService,
@@ -54,6 +55,10 @@ export class LoginPage implements OnInit {
         }
       }
     );
+  }
+
+  registry() {
+    this.router.navigate(['registro']);
   }
 
 }

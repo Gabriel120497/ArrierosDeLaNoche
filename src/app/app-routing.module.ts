@@ -9,7 +9,9 @@ const routes: Routes = [
   { path: '*', redirectTo: ''},
   { path: 'admin', loadChildren: './administracion/admin/admin.module#AdminPageModule'},
   { path: 'arriero', loadChildren: './arriero/arriero/arriero.module#ArrieroPageModule' },
-  { path: 'listado-usuarios', loadChildren: './administracion/listado-usuarios/listado-usuarios.module#ListadoUsuariosPageModule' }
+  { path: 'listado-usuarios', loadChildren: './administracion/listado-usuarios/listado-usuarios.module#ListadoUsuariosPageModule' },
+  { path: 'nuevo-evento', loadChildren: './administracion/nuevo-evento/nuevo-evento.module#NuevoEventoPageModule' },
+  { path: 'registro', loadChildren: './registro/registro.module#RegistroPageModule' }
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,151 @@
+<ion-header>
+    <ion-toolbar color = 'primary'>
+    <ion-grid class="toolbar">
+      <ion-row>
+        <ion-col class="toolbar" size="2">
+          <ion-back-button></ion-back-button>
+        </ion-col>
+        <ion-col class="toolbar title">
+          <ion-title class="toolbar">Registro</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form (ngSubmit)='registry(validations_form.value)' [formGroup]="validations_form">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md='6' size-lg='5' size-xs='12'>
+          <div padding>
+
+            <div class="element">
+              <ion-item>
+                <ion-input id='user' name='nombre' type='text' placeholder='Nombre Completo' formControlName='nombre'>
+                </ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['names']">
+                  <div class="error-message" *ngIf="isValid('nombre', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-input type='password' placeholder='Contraseña' formControlName='clave'></ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['clave']">
+                  <div class="error-message" *ngIf="isValid('clave', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-label>Tipo Documento</ion-label>
+                <ion-select name='tipoDoc' formControlName='tipoDoc'>
+                  <ion-select-option selected value="CC">CC</ion-select-option>
+                  <ion-select-option value="CE">CE</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['documentType']">
+                  <div class="error-message" *ngIf="isValid('tipoDoc', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-input type='number' placeholder='Documento' formControlName='documento'></ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['documentNumber']">
+                  <div class="error-message" *ngIf="isValid('documento', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-label>Tipo de Sangre</ion-label>
+                <ion-select formControlName='rh'>
+                  <ion-select-option value="A+">A+</ion-select-option>
+                  <ion-select-option value="A-">A-</ion-select-option>
+                  <ion-select-option value="B+">B+</ion-select-option>
+                  <ion-select-option value="B-">B-</ion-select-option>
+                  <ion-select-option value="O+">O+</ion-select-option>
+                  <ion-select-option value="O-">O-</ion-select-option>
+                  <ion-select-option value="AB+">AB+</ion-select-option>
+                  <ion-select-option value="AB-">AB-</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['rh']">
+                  <div class="error-message" *ngIf="isValid('rh', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-input type='phone' placeholder='Celular' formControlName='celular'></ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['phone']">
+                  <div class="error-message" *ngIf="isValid('celular', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-input type='text' placeholder='Nombre Contacto' formControlName='nombreContacto'></ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['names']">
+                  <div class="error-message" *ngIf="isValid('nombreContacto', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="element">
+              <ion-item>
+                <ion-input type='phone' placeholder='Número del Contacto' formControlName='celularContacto' required>
+                </ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages['phone']">
+                  <div class="error-message" *ngIf="isValid('celularContacto', validation)">
+                    <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div padding>
+            <ion-button size="medium" expand="block" type="submit" [disabled]="!validations_form.valid"><b>Enviar</b>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
