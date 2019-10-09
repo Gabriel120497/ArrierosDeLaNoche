@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color = 'primary'>
+  <ion-toolbar color='primary'>
     <ion-title>
       Usuarios
     </ion-title>
@@ -7,9 +7,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="card" *ngFor="let usuario of usuarios; let i = index">
+  <ion-card class="card" *ngFor="let usuario of usuarios; let i = index" (click)="verInformacion(i)">
     <ion-card-header>
-      <ion-card-title>{{usuario.nombre}}</ion-card-title>
+      <ion-row>
+        <ion-col>
+          <ion-card-title>{{usuario.nombre}}</ion-card-title>
+        </ion-col>
+        <!--ion-col>
+          <ion-icon name="more" (click)="presentPopover($event)"></ion-icon>
+        </ion-col-->
+      </ion-row>
     </ion-card-header>
     <ion-card-content>
       <ion-row>

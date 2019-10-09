@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'arriero', loadChildren: './arriero/arriero/arriero.module#ArrieroPageModule' },
   { path: 'listado-usuarios', loadChildren: './administracion/listado-usuarios/listado-usuarios.module#ListadoUsuariosPageModule' },
   { path: 'nuevo-evento', loadChildren: './administracion/nuevo-evento/nuevo-evento.module#NuevoEventoPageModule' },
-  { path: 'registro', loadChildren: './registro/registro.module#RegistroPageModule' }
+  { path: 'registro', loadChildren: './registro/registro.module#RegistroPageModule' },
+  { path: 'info-usuario', loadChildren: './administracion/info-usuario/info-usuario.module#InfoUsuarioPageModule' },
 ];
 @NgModule({
   imports: [

@@ -20,10 +20,19 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 
+import { PopoverComponentComponent } from 'src/app/componentes/popover-component/popover-component.component'
+
+
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, FormsModule,  IonicStorageModule.forRoot()],
+  declarations: [AppComponent, PopoverComponentComponent],
+  entryComponents: [PopoverComponentComponent],
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    HttpClientModule, 
+    ReactiveFormsModule, 
+    FormsModule, 
+    IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,

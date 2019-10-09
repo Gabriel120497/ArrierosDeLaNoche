@@ -20,8 +20,8 @@ export class AdminTab3Page implements OnInit {
   ngOnInit() {
     this.cargando.mostrarCargando('Cargando', 8000);
     let idPerfil = this.service.getIdPerfil();
-    //const body = {'id_usuario':idPerfil};
-    const body = { 'id_usuario': 2 };
+    const body = {'id_usuario':idPerfil};
+    //const body = { 'id_usuario': 2 };
 
     this.consults.getUserInfo(body).subscribe(
       (response: any) => {
