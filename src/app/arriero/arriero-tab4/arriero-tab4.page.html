@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>
+      Usuarios
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card" *ngFor="let usuario of usuarios; let i = index" (click)="verInformacion(i)">
+    <ion-card-header>
+      <ion-row>
+        <ion-col>
+          <ion-card-title>{{usuario.nombre}}</ion-card-title>
+        </ion-col>
+        <!--ion-col>
+          <ion-icon name="more" (click)="presentPopover($event)"></ion-icon>
+        </ion-col-->
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        {{usuario.tipoDoc}} {{usuario.documento}}
+      </ion-row>
+      <ion-row>
+        {{usuario.celular}}
+      </ion-row>
+      <ion-row>
+        {{usuario.tipoUsuario}}
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

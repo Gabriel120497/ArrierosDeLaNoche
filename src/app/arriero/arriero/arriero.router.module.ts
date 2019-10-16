@@ -38,6 +38,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'arriero-tab4',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../arriero-tab4/arriero-tab4.module').then(m => m.ArrieroTab4PageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/arriero/arriero/arriero-tab2',
         pathMatch: 'full'
