@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { SHA256 as sha256 } from 'crypto-js';
+import { ConsultsService } from '../services/consults.service';
+import { LoadingService } from '../services/loading.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -10,13 +13,15 @@ import { SHA256 as sha256 } from 'crypto-js';
 })
 export class RegistroPage implements OnInit {
 
-  registerCredentials = { nombre: '', clave: '', tipoDoc: '', documento: '', rh: '', celular: '', nombreContacto: '', celularContacto: '', distancia: ''};
   errorAuth = false;
   validations_form: FormGroup;
   validation_messages: Object;
 
   constructor(public formBuilder: FormBuilder,
-    public modalController: ModalController) { }
+    public modalController: ModalController,
+    private consults: ConsultsService,
+    private loading: LoadingService,
+    private router:Router) { }
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
@@ -43,7 +48,7 @@ export class RegistroPage implements OnInit {
         Validators.pattern('^[ña-zA-Z]+([ña-zA-ZÀ-ÿ ]*)+([ña-zA-Z]+[\s]*)$'),
         Validators.required
       ])),
-      celularContacto: new FormControl('', Validators.compose([
+      numeroContacto: new FormControl('', Validators.compose([
         
         Validators.maxLength(10),
         Validators.required
@@ -82,10 +87,23 @@ export class RegistroPage implements OnInit {
   registry(values) {
     const passHash = sha256(values.clave).toString();
     values.clave = passHash;
-    console.log(this.registerCredentials);
-    
-    
-    
+    console.log('values', values);
+    this.loading.mostrarCargando('Cargando', 5000);
+    this.consults.createNewUser(values).subscribe((response: any) => {
+      console.log(response.res.code);
+      if (response.res.code === '200') {
+        this.loading.detenerCargando();
+        this.loading.presentToast(response.res.message);
+        this.router.navigate(['/login']);
+      } else {
+        this.loading.detenerCargando();
+        this.loading.presentToast(response.res.message);
+      }
+      
+    },
+    (error: any) => {
+      this.loading.presentToast(error);
+    });
   }
 
 }

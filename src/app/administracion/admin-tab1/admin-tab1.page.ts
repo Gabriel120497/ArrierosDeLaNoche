@@ -18,8 +18,9 @@ export class AdminTab1Page implements OnInit {
   }
 
   ngOnInit() {
+    const body  = {'idUser': 0};
     this.cargando.mostrarCargando('Cargando', 3000);
-    this.consults.getAllEvents().subscribe((response: any) => {
+    this.consults.getAllEvents(body).subscribe((response: any) => {
       console.log(response.res);
       
       this.eventos = response.res;

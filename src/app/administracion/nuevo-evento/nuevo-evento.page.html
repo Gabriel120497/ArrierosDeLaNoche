@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color = 'primary'>
+  <ion-toolbar color='primary'>
     <ion-grid class="toolbar">
       <ion-row>
         <ion-col class="toolbar" size="2">
@@ -38,15 +38,19 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-label position="stacked">Distancia <ion-text color="danger">*</ion-text>
+        <ion-label position="stacked">Distancia en KM<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input required type="text" [(ngModel)]='evento.distancia' name="distancia"></ion-input>
+        <ion-input required type="number" [(ngModel)]='evento.distancia' name="distancia"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Dificultad <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input required type="text" [(ngModel)]='evento.dificultad' name="dificultad"></ion-input>
+        <ion-select required [(ngModel)]='evento.dificultad' name="dificultad">
+          <ion-select-option value="Fácil">Fácil</ion-select-option>
+          <ion-select-option value="Medio">Medio</ion-select-option>
+          <ion-select-option value="Dificil">Dificil</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item lines="none">
@@ -59,10 +63,10 @@
         </ion-label>
         <ion-label position="stacked">Fecha Inicio</ion-label>
         <ion-datetime [(ngModel)]='evento.inicio' name="inicio" displayFormat="MM/DD/YYYY" value="{{evento.inicio}}"
-          min="{{evento.inicio}}">
+          min="{{evento.fechaPub}}">
         </ion-datetime>
         <ion-label position="stacked">Fecha Fin</ion-label>
-        <ion-datetime [(ngModel)]='evento.inicio' name="inicio" displayFormat="MM/DD/YYYY" value="{{evento.inicio}}"
+        <ion-datetime [(ngModel)]='evento.fin' name="fin" displayFormat="MM/DD/YYYY" value="{{evento.fin}}"
           min="{{evento.inicio}}">
         </ion-datetime>
       </ion-item>

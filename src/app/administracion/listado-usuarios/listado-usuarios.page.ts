@@ -51,14 +51,24 @@ export class ListadoUsuariosPage implements OnInit {
   guardar(){
     let usuariosNuevo = []
     this.usuarios.forEach(user => {
-      if (user['validado'] === true) {
+      if (user['validado'] && user['estado']) {
         console.log('usuario', user);
+        user['validado'] = 'Pago';
+        usuariosNuevo.push(user);
+      }else if(user['validado']) {
+        user['validado'] = 'Registrado';
         usuariosNuevo.push(user);
       }
     });
     console.log(usuariosNuevo);
+    if (usuariosNuevo.length>0) {
+      //Mandar por el servicio
+    } else {
+      //Mostrar toast diciendo que no hay nada para actualizar  nosmbre servicio "updatePaymentUser"
+      
+    }
     this.habilitar = false;
-    //Mandar por el servicio
+    
   }
 
 }

@@ -19,12 +19,12 @@ export class ConsultsService {
     return this.http.post(`${this.address}/login`, body, { headers });
   }
 
-  getAllEvents(): Observable<any> {
+  getAllEvents(body): Observable<any> {
     const headers = new HttpHeaders().set(
       'Authorization',
       this.tokenService.getToken()
     );
-    return this.http.get(`${this.address}/getAllEvents`, { headers });
+    return this.http.post(`${this.address}/getAllEvents`, body, { headers });
   }
 
   getUserInfo(body): Observable <any> {
@@ -57,6 +57,14 @@ export class ConsultsService {
       this.tokenService.getToken()
     );
     return this.http.post(`${this.address}/createNewEvent`, body, { headers });
+  }
+
+  createNewUser(body):Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.post(`${this.address}/register`, body, { headers });
   }
 
 }

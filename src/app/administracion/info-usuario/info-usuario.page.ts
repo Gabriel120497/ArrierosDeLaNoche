@@ -16,6 +16,7 @@ export class InfoUsuarioPage implements OnInit {
   tipoUsuarios: string = '';
   perfiles = [];
   body = { tipoUsuario: '' };
+  message = 'No tiene permisos para ver este usuario';
 
   constructor(private service: TokenService, private route: ActivatedRoute, private router: Router, private loadingService: LoadingService) {
     this.route.queryParams.subscribe(params => {
@@ -69,7 +70,7 @@ export class InfoUsuarioPage implements OnInit {
       }
     } else {
       if (this.data.tipoUsuario === 'Admin') {
-        this.loadingService.presentToast();
+        this.loadingService.presentToast(this.message);
       } else {
         if (this.editSave === 'brush') {
           this.editSave = 'checkmark';

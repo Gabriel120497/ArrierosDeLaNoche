@@ -20,9 +20,9 @@ export class LoadingService {
       this.loading.dismiss();
   }
 
-  async presentToast() {
+  async presentToast(message) {
     const toast = await this.toastController.create({
-      message: 'No tiene permisos para ver este usuario',
+      message: message,
       duration: 2000
     });
     toast.present();

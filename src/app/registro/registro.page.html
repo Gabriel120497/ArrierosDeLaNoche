@@ -128,12 +128,12 @@
 
             <div class="element">
               <ion-item>
-                <ion-input type='phone' placeholder='Número del Contacto' formControlName='celularContacto' required>
+                <ion-input type='phone' placeholder='Número del Contacto' formControlName='numeroContacto' required>
                 </ion-input>
               </ion-item>
               <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages['phone']">
-                  <div class="error-message" *ngIf="isValid('celularContacto', validation)">
+                  <div class="error-message" *ngIf="isValid('numeroContacto', validation)">
                     <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
                   </div>
                 </ng-container>

@@ -8,9 +8,10 @@
 
 <ion-content>
   <ion-card class="card" *ngFor="let evento of eventos; let i = index">
-    <img class="imgRecorrido" [src]="evento.recorrido.imagen" />
+    <img class="imgRecorrido" [src]="evento.recorrido.foto" />
     <ion-card-header>
       <ion-card-title>{{evento.tituloEvento}}</ion-card-title>
+
       <ion-row>
         <!--valor: {{evento.recorrido.valor}}-->
         <br>
@@ -22,5 +23,7 @@
     <ion-card-content>
       {{evento.recorrido.descripcion}}
     </ion-card-content>
+    <ion-button *ngIf="!habilitar[i]" class="boton" size="small" (click) = "registrarse(evento.idEvento)">registrarme</ion-button>
+    <ion-button *ngIf="habilitar[i]" class="boton" size="small" [disabled]="true">Registrado</ion-button>
   </ion-card>
 </ion-content>

@@ -21,7 +21,9 @@
   <ion-list>
     <ion-item *ngFor="let usuario of usuarios; let i = index">
       <ion-label>{{usuario.nombre}}</ion-label>
-      <ion-checkbox color = "dark" slot="end" [disabled] = "!habilitar" [(ngModel)]="usuario.estado" (ionChange)="validarPago(i)"></ion-checkbox>
+      <ion-label position="fixed" class="pago" *ngIf="!habilitar && usuario.estado">Pagó</ion-label>
+      <ion-label *ngIf="habilitar && !usuario.estado"></ion-label>
+      <ion-checkbox color = "dark" slot="start" *ngIf = "habilitar" [(ngModel)]="usuario.estado" (ionChange)="validarPago(i)"></ion-checkbox>
     </ion-item>
   </ion-list>
   <ion-button class="btnSave" expand="block" [disabled]="!habilitar" (click) = "guardar()">Guardar</ion-button>

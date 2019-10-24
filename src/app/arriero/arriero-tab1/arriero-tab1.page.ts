@@ -18,9 +18,10 @@ export class ArrieroTab1Page implements OnInit {
   }
 
   ngOnInit() {
+    const body  = {'idUser': 0};
     this.cargando.mostrarCargando('Cargando', 3000);
-    this.consults.getAllEvents().subscribe((response: any) => {
-      console.log(response.res);
+    this.consults.getAllEvents(body).subscribe((response: any) => {
+      console.log(response);
       
       this.eventos = response.res;
       this.cargando.detenerCargando();

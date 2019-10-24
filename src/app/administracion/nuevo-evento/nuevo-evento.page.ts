@@ -6,7 +6,9 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { ConsultsService } from 'src/app/services/consults.service';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
+import { Router } from '@angular/router';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -15,11 +17,10 @@ import { Crop } from '@ionic-native/crop/ngx';
 })
 export class NuevoEventoPage implements OnInit {
 
-  fechaInicio = new Date().toISOString();
-  fechaFin = new Date().toISOString();
-  fechaPub = new Date().toISOString();
-        fechaPubUI = event['fechaPub']
-  evento = { titulo: '', foto: '', lugar: '', distancia: '', dificultad: '', descripcion: '', inicio: this.fechaInicio, fin: this.fechaFin, estado: 'Activo', fechaPub: this.fechaPub};
+  fechaInicio = new Date().toISOString().split('T')[0];
+  fechaFin = new Date().toISOString().split('T')[0];
+  fechaPub = new Date().toISOString().split('T')[0];
+  evento = { titulo: '', foto: '', lugar: '', distancia: '', dificultad: '', descripcion: '', inicio: this.fechaInicio, fin: this.fechaFin, estado: 'Activo', fechaPub: this.fechaPub };
   base64Image;
 
   croppedImagepath = "";
@@ -32,15 +33,16 @@ export class NuevoEventoPage implements OnInit {
 
   constructor(private camera: Camera,
     public actionSheetController: ActionSheetController,
-    private cargando: LoadingService, 
+    private cargando: LoadingService,
     private consults: ConsultsService,
-    private base64: Base64,
+    private token: TokenService,
+    private router:Router,
     private crop: Crop,
     private file: File) { }
-  
+
 
   ngOnInit() {
-   
+
   }
 
   pickImage(sourceType) {
@@ -113,23 +115,31 @@ export class NuevoEventoPage implements OnInit {
   }
 
   guardarEvento() {
-    this.fechaInicio = this.evento.inicio;
-    this.fechaFin = this.evento.fin;
+    this.evento.inicio = this.evento.inicio.replace(/[-]/g, '/');
+    this.evento.fin = this.evento.fin.replace(/[-]/g, '/');
+    this.evento.fechaPub = this.evento.fechaPub.replace(/[-]/g, '/');
     const body = this.evento;
     console.log(body);
-    
-    /*this.cargando.mostrarCargando('Cargando', 8000);
-    const body = this.evento;
-    //const body = {'id_usuario':3};
-
-    this.consults.createNewEvent(body).subscribe(
-      (response: any) => {
-        
+    this.cargando.mostrarCargando('Cargando', 5000);
+    this.consults.createNewEvent(body).subscribe((response: any) => {
+      console.log(response.res.code);
+      if (response.res.code === '200') {
         this.cargando.detenerCargando();
-      },
-      (error: any) => {
+        this.cargando.presentToast(response.res.message);
+        if (this.token.getIdPerfil() === 1) {
+          this.router.navigate(['/admin/admin-tab2']);
+        } else {
+          this.router.navigate(['/arriero/arriero-tab2']);
+        }
+      } else {
+        this.cargando.detenerCargando();
+        this.cargando.presentToast(response.res.message);
       }
-    );*/
+
+    },
+      (error: any) => {
+        this.cargando.presentToast(error);
+      });
   }
- 
+
 }
