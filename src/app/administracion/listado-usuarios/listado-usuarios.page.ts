@@ -12,6 +12,7 @@ export class ListadoUsuariosPage implements OnInit {
 
   usuarios = [];
   habilitar = false;
+  editSave: String = 'brush';
   body;
 
   constructor(private route: ActivatedRoute, 
@@ -19,8 +20,6 @@ export class ListadoUsuariosPage implements OnInit {
     private consults: ConsultsService) { }
 
   ngOnInit() {
-     //Crear servicio que me traiga todos los usuarios 
-    //registrados con sus estados que asisten a determinada caminata
     this.cargando.mostrarCargando('Cargando', 8000);
 
     this.route.queryParams.subscribe(params => {
@@ -48,7 +47,20 @@ export class ListadoUsuariosPage implements OnInit {
     console.log(this.usuarios);
   }
 
-  guardar(){
+  editarGuardar() {
+    //this.editSave  =  this.editSave  ===  'brush'  ?  'checkmark'  :  'brush';
+    if (this.editSave === 'brush') {
+      this.editSave = 'checkmark';
+      this.habilitar = true;
+    } else {
+      this.editSave = 'brush';
+      this.habilitar = false;
+      this.guardar(this.organizarUsuarios());
+    }
+
+  }
+
+  organizarUsuarios() {
     let usuariosNuevo = []
     this.usuarios.forEach(user => {
       if (user['validado'] && user['estado']) {
@@ -60,15 +72,31 @@ export class ListadoUsuariosPage implements OnInit {
         usuariosNuevo.push(user);
       }
     });
-    console.log(usuariosNuevo);
+    return usuariosNuevo;
+  }
+
+
+  guardar(usuariosNuevo){
+    
+    console.log('usuario Nuevo', usuariosNuevo);
     if (usuariosNuevo.length>0) {
-      //Mandar por el servicio
+      this.consults.updatePaymentUser(usuariosNuevo).subscribe(
+        (response: any) => {
+          this.usuarios = response.res;
+          console.log('usuarios: ', this.usuarios);
+          this.cargando.detenerCargando();
+          if (response.res.code === '200') {
+            this.cargando.presentToast(response.res.message);
+          } else {
+            this.cargando.presentToast(response.res.message);
+          }
+        },
+        (error: any) => {
+        }
+      );
     } else {
       //Mostrar toast diciendo que no hay nada para actualizar  nosmbre servicio "updatePaymentUser"
       
     }
-    this.habilitar = false;
-    
   }
-
 }

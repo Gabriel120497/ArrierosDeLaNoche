@@ -5,11 +5,11 @@
         <ion-col class="toolbar" size="2">
           <ion-back-button></ion-back-button>
         </ion-col>
-        <ion-col class="toolbar title">
+        <ion-col class="toolbar title" size = "8">
           <ion-title class="toolbar">Listado Usuarios</ion-title>
         </ion-col>
-        <ion-col>
-          <ion-button size = "small" (click) = "habilitarCheck()">Editar</ion-button>
+        <ion-col class="button" size = "2">
+          <ion-icon  [name]="editSave" (click)="editarGuardar()"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -26,5 +26,5 @@
       <ion-checkbox color = "dark" slot="start" *ngIf = "habilitar" [(ngModel)]="usuario.estado" (ionChange)="validarPago(i)"></ion-checkbox>
     </ion-item>
   </ion-list>
-  <ion-button class="btnSave" expand="block" [disabled]="!habilitar" (click) = "guardar()">Guardar</ion-button>
+  <!--ion-button class="btnSave" expand="block" [disabled]="!habilitar" (click) = "guardar()">Guardar</ion-button-->
 </ion-content>

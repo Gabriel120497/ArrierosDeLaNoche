@@ -12,23 +12,45 @@ import { TokenService } from '../../services/token.service';
 export class AdminTab2Page implements OnInit {
 
   eventos = [];
-  
+
   constructor(private cargando: LoadingService, private consults: ConsultsService, private router: Router,
-     private token:TokenService) { 
+    private token: TokenService) {
   }
 
-  ngOnInit() {
-    const body  = {'idUser': this.token.getId()};
+  ionViewWillEnter(){
+    console.log('ionViewWillEnter()');
+    const body = { 'idUser': this.token.getId() };
     console.log('onInit');
     this.consults.getAllEvents(body).subscribe((response: any) => {
       console.log(response);
-      
+
       this.eventos = response.res;
       this.cargando.detenerCargando();
     },
-    (error: any) => {
-    });
+      (error: any) => {
+      });
   }
+
+  ngOnInit() {
+    console.log('ngOnInit()');
+    
+    /* const body = { 'idUser': this.token.getId() };
+    console.log('onInit');
+    this.consults.getAllEvents(body).subscribe((response: any) => {
+      console.log(response);
+
+      this.eventos = response.res;
+      this.cargando.detenerCargando();
+    },
+      (error: any) => {
+      }); */
+  }
+
+ngAfterContentInit(){
+  console.log('ngAfterContentInit()');
+  
+}
+
 
   addNew() {
     this.router.navigate(['nuevo-evento'])

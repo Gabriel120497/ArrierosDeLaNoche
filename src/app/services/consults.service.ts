@@ -27,7 +27,7 @@ export class ConsultsService {
     return this.http.post(`${this.address}/getAllEvents`, body, { headers });
   }
 
-  getUserInfo(body): Observable <any> {
+  getUserInfo(body): Observable<any> {
     const headers = new HttpHeaders().set(
       'Authorization',
       this.tokenService.getToken()
@@ -51,20 +51,28 @@ export class ConsultsService {
     return this.http.post(`${this.address}/getAllUsersInEvent`, body, { headers });
   }
 
-  createNewEvent(body):Observable<any> {
+  createNewEvent(body): Observable<any> {
     const headers = new HttpHeaders().set(
       'Authorization',
       this.tokenService.getToken()
     );
-    return this.http.post(`${this.address}/createNewEvent`, body, { headers });
+    return this.http.post(`${this.address}/creatNewEvent`, body, { headers });
   }
 
-  createNewUser(body):Observable<any> {
+  createNewUser(body): Observable<any> {
     const headers = new HttpHeaders().set(
       'Authorization',
       this.tokenService.getToken()
     );
     return this.http.post(`${this.address}/register`, body, { headers });
+  }
+
+  updatePaymentUser(body): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      this.tokenService.getToken()
+    );
+    return this.http.post(`${this.address}/updatePaymentUser`, body, { headers });
   }
 
 }

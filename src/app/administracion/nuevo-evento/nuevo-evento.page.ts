@@ -123,6 +123,8 @@ export class NuevoEventoPage implements OnInit {
     this.cargando.mostrarCargando('Cargando', 5000);
     this.consults.createNewEvent(body).subscribe((response: any) => {
       console.log(response.res.code);
+      console.log(response);
+      
       if (response.res.code === '200') {
         this.cargando.detenerCargando();
         this.cargando.presentToast(response.res.message);
