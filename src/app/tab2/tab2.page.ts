@@ -38,8 +38,6 @@ export class Tab2Page implements OnInit {
   habilitarBotones() {
     let j = 0;
     for (let index = 0; index < this.eventos.length; index++) {
-      console.log('Eventos');
-      console.log('eventosUser');
       if (j < this.eventosUsuario.length) {
         if (this.eventos[index].idEvento === this.eventosUsuario[j].idEvento) {
           this.habilitar[index] = true;
@@ -51,10 +49,27 @@ export class Tab2Page implements OnInit {
     }
   }
 
-  registrarse(idEvento) {
-    this.habilitar[idEvento - 1] = true;
+  registrarse(eventoId, recorridoId) {
+    this.habilitar[eventoId - 1] = true;
     this.cargando.presentToast(this.message);
-    console.log(idEvento);
+    console.log(eventoId);
+    console.log(recorridoId);
+    console.log(this.token.getId());
+    console.log(this.token.getUser());
+    const body  = {'eventoId': eventoId, 'recorridoId':recorridoId, 'usuarioId':this.token.getId(), 'documento':this.token.getUser()};
+    this.cargando.mostrarCargando('Cargando', 3000);
+    this.consults.getAllEvents(body).subscribe((response: any) => {
+      console.log(response.res);
+      if (response.res.code === '200') {
+        this.cargando.detenerCargando();
+        this.cargando.presentToast(response.res.message);
+      } else {
+        this.cargando.detenerCargando();
+        this.cargando.presentToast(response.res.message);
+      }
+    },
+    (error: any) => {
+    });
 
   }
 

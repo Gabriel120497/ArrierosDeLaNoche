@@ -23,7 +23,7 @@
     <ion-card-content>
       {{evento.recorrido.descripcion}}
     </ion-card-content>
-    <ion-button *ngIf="!habilitar[i]" class="boton" size="small" (click) = "registrarse(evento.idEvento)">registrarme</ion-button>
+    <ion-button *ngIf="!habilitar[i]" class="boton" size="small" (click) = "registrarse(evento.idEvento, evento.recorrido.idRecorrido)">registrarme</ion-button>
     <ion-button *ngIf="habilitar[i]" class="boton" size="small" [disabled]="true">Registrado</ion-button>
   </ion-card>
 </ion-content>

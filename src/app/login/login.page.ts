@@ -30,6 +30,7 @@ export class LoginPage implements OnInit {
     this.cargando.mostrarCargando('Iniciando sesión', 8000);
     const passHash = sha256(this.registerCredentials.pass).toString();
     const body = { user: this.registerCredentials.user, password: passHash };
+    this.service.setUser(this.registerCredentials.user);
     console.log(body);
     this.consults.login(body).subscribe(
       (response: any) => {
